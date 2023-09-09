@@ -27,7 +27,7 @@ const Stage4 = () => {
 										Balance: <span style={{ color: 'white' }}>0</span>
 									</div>
 								</div>
-								<hr className='solid-line' />
+								<hr className='solid-line bd-white' />
 								<div className='liquid-pool-container'>
 									<div className='liquid-pool-left'>
 										<img alt='' src={BrIcon} style={{ width: '22px' }} />
