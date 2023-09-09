@@ -1,0 +1,162 @@
+.landing {
+	opacity: 0.5;
+}
+.landing-values {
+	font-size: 1.5rem;
+}
+
+.card-stake-container {
+	width: 100%;
+	color: white;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 22px 0 12px 0;
+}
+
+.card-bridge-container {
+	width: 100%;
+}
+
+.bridge-subcomponent {
+	width: 100%;
+	display: flex;
+}
+
+.bridge-selector {
+	width: fit-content;
+	padding: 16px;
+	border-radius: 12px 0 0 0;
+	outline: 1px solid rgba(255, 255, 255, 0.15);
+	display: flex;
+	gap: 8px;
+	box-sizing: border-box !important;
+
+	> select {
+		background-color: transparent;
+		font-weight: 600;
+		color: white;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.landing-right {
+	width: 100%;
+	padding: 12px;
+	border-radius: 0 12px 0 0;
+	display: flex;
+	color: white;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+}
+
+.small-bridge-buttons {
+	font-size: 12px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding: 4px 12px;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	opacity: 0.5;
+	font-weight: 500;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.only-icon-center {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	> img {
+		width: 84px;
+	}
+}
+
+.card-bridge-fees-container {
+	outline: 1px solid gray;
+	width: 100%;
+	border-radius: 12px;
+	padding: 12px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	font-weight: 500;
+	margin: 22px 0;
+}
+
+.item {
+	width: 100%;
+	display: flex;
+}
+
+.item-left {
+	width: 100%;
+	opacity: 0.55;
+	font-size: 14px;
+}
+.item-right {
+	width: 100%;
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+}
+
+.stages-container {
+	width: 100%;
+	display: flex;
+	gap: 22px;
+}
+
+.dotted {
+	width: 100%;
+	border: 5px dotted gray;
+	border-style: none none dotted;
+	color: #fff;
+	background-color: transparent;
+}
+
+.stage-item {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-weight: 600;
+	> div {
+		font-size: 10px;
+	}
+}
+
+.input-container {
+	display: flex;
+	outline: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 10px;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.input {
+	outline: none;
+	background-color: transparent;
+	color: white;
+	width: 100%;
+	padding: 0 12px;
+	font-weight: 600;
+	&::placeholder {
+		color: gray;
+	}
+}
+
+.country-flags {
+	padding-left: 12px;
+}
+
+.banner-container {
+	padding: 24px 0;
+	> div {
+		height: 302px;
+	}
+}

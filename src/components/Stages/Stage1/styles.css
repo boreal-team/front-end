@@ -1,0 +1,185 @@
+.content-container {
+	width: 100%;
+	padding: 32px 25%;
+}
+
+.card-container {
+	padding: 32px;
+	border-radius: 10px;
+	background: rgba(255, 255, 255, 0.25);
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+	backdrop-filter: blur(4px);
+	-webkit-backdrop-filter: blur(4px);
+	border-radius: 10px;
+}
+
+.card-header {
+	width: 100%;
+	display: flex;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #d9d9d91a;
+}
+
+.card-title {
+	width: 100%;
+	font-size: 32px;
+	color: white;
+	font-weight: 600;
+}
+
+.address-container {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.card-user-address {
+	width: fit-content;
+	display: flex;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: flex-end;
+	background-color: #ffffff1a;
+	border-radius: 4px 0 4px 0;
+	cursor: pointer;
+	> div {
+		padding: 4px 22px;
+		font-size: 12px;
+		color: white;
+	}
+}
+
+.card-subtitle {
+	width: 100%;
+	color: white;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 22px 0 12px 0;
+}
+
+.card-bridge-container {
+	width: 100%;
+}
+
+.bridge-subcomponent {
+	width: 100%;
+	display: flex;
+}
+
+.bridge-selector {
+	width: fit-content;
+	padding: 16px;
+	border-radius: 12px 0 0 0;
+	outline: 1px solid rgba(255, 255, 255, 0.15);
+	display: flex;
+	gap: 8px;
+	box-sizing: border-box !important;
+
+	> select {
+		background-color: transparent;
+		font-weight: 600;
+		color: white;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
+.bridge-right {
+	width: 100%;
+	padding: 12px;
+	border-radius: 0 12px 0 0;
+	display: flex;
+	color: white;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 12px;
+	outline: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.small-bridge-buttons {
+	font-size: 12px;
+	border: 1px solid gray;
+	border-radius: 4px;
+	padding: 4px 12px;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	opacity: 0.5;
+	font-weight: 500;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.only-icon-center {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	> img {
+		width: 84px;
+	}
+}
+
+.card-bridge-fees-container {
+	outline: 1px solid gray;
+	width: 100%;
+	border-radius: 12px;
+	padding: 12px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	font-weight: 500;
+	margin: 22px 0;
+}
+
+.item {
+	width: 100%;
+	display: flex;
+}
+
+.item-left {
+	width: 100%;
+	opacity: 0.55;
+}
+.item-right {
+	width: 100%;
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+}
+
+.stages-container {
+	width: 100%;
+	display: flex;
+	gap: 22px;
+}
+
+.dotted {
+	width: 100%;
+	border: 5px dotted gray;
+	border-style: none none dotted;
+	color: #fff;
+	background-color: transparent;
+}
+
+.solid-line {
+	width: 100%;
+	border: 1px solid gray;
+	border-style: none none solid;
+	color: #fff;
+	background-color: transparent;
+	margin: 0;
+}
+
+.stage-item {
+	width: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: white;
+	font-weight: 600;
+	> div {
+		font-size: 10px;
+	}
+}
