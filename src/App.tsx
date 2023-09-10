@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -37,6 +38,24 @@ function App() {
 			</GeneralProvider>
 		</div>
 	);
+=======
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { ChakraProvider } from "@chakra-ui/react";
+import Dashboard from "./pages/dashboard";
+import { GeneralProvider } from "./context/GeneralContext";
+
+function App() {
+  return (
+    <div className="app">
+      <GeneralProvider>
+        <ChakraProvider>
+          <Dashboard />
+        </ChakraProvider>
+      </GeneralProvider>
+    </div>
+  );
+>>>>>>> 36b0f7c7c087df3625a4b334baf3455ee9436246
 }
 
 export default App;
