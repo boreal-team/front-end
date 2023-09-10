@@ -27,7 +27,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const fetchUserAccount = async () => {
     // Use Web3 to get user's accounts.
     const accounts = await web3?.eth.getAccounts()
-
     // Update the user state with the first account (if available), otherwise set to null.
     setUser(accounts ? accounts[0] : null)
   }

@@ -7,9 +7,20 @@ import LogoBoreal from '../../assets/logo-boreal.svg';
 import Icon from '@mdi/react';
 import { mdiMenu } from '@mdi/js';
 import { useGeneral } from '../../context/GeneralContext';
+import { useUser } from '../../context/UserContext';
 
 function NavbarComponent() {
 	const { setStage, stage } = useGeneral();
+	const { user } = useUser();
+
+	function shortenEthereumAddress(address: string) {
+		if (address && address.length >= 10) {
+			const firstPart = address.slice(0, 6);
+			const lastPart = address.slice(-5);
+			return `${firstPart}...${lastPart}`;
+		}
+		return address;
+	}
 	return (
 		<>
 			<Navbar expand='lg' className='p-4' style={{ background: 'transparent' }}>
@@ -46,13 +57,19 @@ function NavbarComponent() {
 								onClick={() => setStage(3)}>
 								Liquid Pool
 							</div>
-							<div className='text-light font-weight-bold only-mobile'>
-								Connect a Wallet
+							<div
+								className='text-light font-weight-bold only-mobile'
+								style={user ? { cursor: 'default' } : {}}>
+								{user ? shortenEthereumAddress(user) : 'Connect wallet'}
 							</div>
 						</Nav>
 					</Navbar.Collapse>
 					<Form className='d-flex only-desktop'>
-						<div className='navbar-button'>Connect a Wallet</div>
+						<div
+							className='navbar-button'
+							style={user ? { cursor: 'default' } : {}}>
+							{user ? shortenEthereumAddress(user) : 'Connect wallet'}
+						</div>
 					</Form>
 				</Container>
 			</Navbar>

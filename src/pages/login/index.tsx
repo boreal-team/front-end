@@ -10,7 +10,7 @@ const Login = () => {
 
 	async function startConnection() {
 		const accounts = await magic.wallet.connectWithUI();
-
+		
 		/*
 		await magic.oauth.loginWithRedirect({
 			provider: 'google' ,

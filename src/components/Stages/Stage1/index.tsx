@@ -1,16 +1,37 @@
 import TransferIcon from '../../../assets/transfer-icon.svg';
 import ButtonComponent from '../../../components/Button';
+import BrFlag from '../../../assets/br-flag.svg';
+import PolygonFlag from '../../../assets/matic-icon.svg';
 import './styles.css';
+import { useUser } from '../../../context/UserContext';
+import { useTokenBalance, hooksFactory } from '@lido-sdk/react';
+import { useState } from 'react';
 
 const Stage1 = () => {
+	const { user } = useUser();
+	const [drextr, setDrextr] = useState<number>(0);
+
+	function shortenEthereumAddress(address: string) {
+		if (address && address.length >= 10) {
+			const firstPart = address.slice(0, 6);
+			const lastPart = address.slice(-5);
+			return `${firstPart}...${lastPart}`;
+		}
+		return address;
+	}
+
 	return (
 		<div className='content-container'>
 			<div className='card-container'>
 				<div className='card-header'>
 					<div className='card-title'>Bridge</div>
 					<div className='address-container'>
-						<div className='card-user-address'>
-							<div>Connect wallet</div>
+						<div
+							className='card-user-address'
+							style={user ? { cursor: 'default' } : {}}>
+							<div>
+								{user ? shortenEthereumAddress(user) : 'Connect wallet'}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -18,29 +39,21 @@ const Stage1 = () => {
 				<div className='card-bridge-container'>
 					<div className='bridge-subcomponent'>
 						<div className='bridge-selector'>
-							<div>ICON</div>
-							<select name='cars' id='cars'>
-								<option value='volvo'>Volvo</option>
-								<option value='saab'>Saab</option>
-								<option value='opel'>Opel</option>
-								<option value='audi'>Audi</option>
-							</select>{' '}
+							<div className='icon-token-container'>
+								<img alt='' src={BrFlag} />
+								<div>DREX</div>
+							</div>
 						</div>
 						<div className='bridge-right'>Balance: 0</div>
 					</div>
 				</div>
 				<div className='card-bridge-container'>
 					<div className='bridge-subcomponent'>
-						<div
-							className='bridge-selector'
-							style={{ borderRadius: '0 0 0 12px' }}>
-							<div>ICON</div>
-							<select name='cars' id='cars'>
-								<option value='volvo'>Volvo</option>
-								<option value='saab'>Saab</option>
-								<option value='opel'>Opel</option>
-								<option value='audi'>Audi</option>
-							</select>{' '}
+						<div className='bridge-selector'>
+							<div className='icon-token-container'>
+								<img alt='' src={BrFlag} />
+								<div>DREXtr</div>
+							</div>
 						</div>
 						<div
 							className='bridge-right'
@@ -52,7 +65,22 @@ const Stage1 = () => {
 									width: '100%',
 									textAlign: 'left',
 								}}>
-								33
+								<input
+									onChange={(e) =>
+										setDrextr(parseFloat(e.target.value.replace(',', '.')))
+									}
+									value={
+										drextr !== null
+											? (drextr / 100)
+													.toLocaleString('pt-br', {
+														minimumFractionDigits: 2,
+													})
+													.replace(',', '.')
+											: ''
+									}
+									className='input'
+									type='number'
+								/>
 							</div>
 							<div className='small-bridge-buttons'>25%</div>
 							<div className='small-bridge-buttons'>50%</div>
@@ -69,13 +97,19 @@ const Stage1 = () => {
 				<div className='card-bridge-container'>
 					<div className='bridge-subcomponent'>
 						<div className='bridge-selector'>
-							<div>ICON</div>
+							<div className='icon-token-container'>
+								<img alt='' src={PolygonFlag} />
+								<div>Polygon</div>
+							</div>
+
+							{/* 
 							<select name='cars' id='cars'>
 								<option value='volvo'>Volvo</option>
 								<option value='saab'>Saab</option>
 								<option value='opel'>Opel</option>
 								<option value='audi'>Audi</option>
-							</select>{' '}
+							</select>
+							*/}
 						</div>
 						<div className='bridge-right'>
 							<div
