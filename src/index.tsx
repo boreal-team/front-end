@@ -19,7 +19,7 @@ const { chains, publicClient } = configureChains(
   [polygonMumbai],
   [
     alchemyProvider({
-      apiKey: "INSIRA_AQUI_SUA_APIKEY_ALCHEMY",
+      apiKey: "API_KEY_ALCHEMY",
     }),
     publicProvider(),
   ]
@@ -27,7 +27,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "Boreal Protocol",
-  projectId: "INSIRA_AQUI_SEU_PROJECTID_WALLETCONNECT",
+  projectId: "PROJECTID_WALLETCONNECT",
   chains,
 });
 
