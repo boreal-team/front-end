@@ -1,15 +1,38 @@
+import { useState } from "react";
 import ButtonComponent from "../../Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import MaticIcon from "../../../assets/matic-icon.svg";
+import EthIcon from "../../../assets/eth-icon.svg";
 import "./styles.css";
 import { useAccount, useBalance } from "wagmi";
+import axios from "axios";
 
 const Stage3 = () => {
+  const [drexAmountStake, setDrexAmountStake] = useState<number>(0);
   const account: any = useAccount();
-  const { data, isError, isLoading } = useBalance({
+  const { data } = useBalance({
     address: account.address,
   });
+  const balanceGoerli = useBalance({
+    address: account.address,
+    token: "0x438db7329230cCACBb5C02ee5b01b300eb13C633",
+  });
+
+  const stakingNow = () => {
+    axios
+      .post("https://2ae1-177-8-53-243.ngrok-free.app/boreal/stake", {
+        network: "ethereum",
+        sender: account.address,
+        amount: drexAmountStake,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className="content-container">
@@ -36,18 +59,26 @@ const Stage3 = () => {
             </Row>
             <Row className="landing-values">
               <Col>
-                {account.isDisconnected && `0.0 MATIC`}
+                {account.isDisconnected && `0.0 WDREXtr`}
                 {account.isConnected &&
-                  `${data?.formatted.slice(0, 6)} ${data?.symbol}`}
+                  `${balanceGoerli?.data?.formatted.slice(0, 6)} ${
+                    balanceGoerli?.data?.symbol
+                  }`}
               </Col>
               <Col style={{ textAlign: "right", color: "#26E075" }}>4.1%</Col>
             </Row>
           </div>
           <div className="input-container">
             <div className="country-flags">
-              <img alt="" src={MaticIcon} />
+              <img alt="" src={EthIcon} />
             </div>
-            <input className="input" type="text" placeholder="DREXtr amount" />
+            <input
+              className="input"
+              type="text"
+              placeholder="DREXtr amount"
+              value={drexAmountStake}
+              onChange={(e) => setDrexAmountStake(Number(e.target.value))}
+            />
             <div>
               <div
                 className="landing-right"
@@ -61,7 +92,7 @@ const Stage3 = () => {
           </div>
 
           <div style={{ margin: "12px 0" }}>
-            <ButtonComponent onChange={() => alert("CLICKED")} text="Submit" />
+            <ButtonComponent onChange={() => stakingNow()} text="Submit" />
           </div>
 
           <div className="card-bridge-fees-container">

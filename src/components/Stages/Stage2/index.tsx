@@ -1,4 +1,5 @@
 import PolidoStakeBanner from "@lidofinance/polygon-sdk-banner";
+import BannerEth from "../../../components/BannerEth";
 import "./styles.css";
 
 const Stage2 = () => {
@@ -14,6 +15,7 @@ const Stage2 = () => {
       <hr className="solid-line bd-white" />
       <div className="banner-container">
         <PolidoStakeBanner direction="horizontal" />
+        <BannerEth />
       </div>
     </div>
   );

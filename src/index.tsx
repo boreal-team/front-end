@@ -10,16 +10,17 @@ import {
   darkTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { polygonMumbai } from "wagmi/chains";
+import { polygonMumbai, goerli } from "wagmi/chains";
+import { lachain } from "./utils/lachain";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import "@rainbow-me/rainbowkit/styles.css";
 
 const { chains, publicClient } = configureChains(
-  [polygonMumbai],
+  [polygonMumbai, lachain, goerli],
   [
     alchemyProvider({
-      apiKey: "API_KEY_ALCHEMY",
+      apiKey: "6zzV3Qfs8qBB0MuSEvOhC47L50Ltxmpi",
     }),
     publicProvider(),
   ]
@@ -27,7 +28,7 @@ const { chains, publicClient } = configureChains(
 
 const { connectors } = getDefaultWallets({
   appName: "Boreal Protocol",
-  projectId: "PROJECTID_WALLETCONNECT",
+  projectId: "e2a32f4eb7bd9c416bb07dcd68f361fa",
   chains,
 });
 
