@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 import BrIcon from "../../../assets/br-flag.svg";
 import EthIcon from "../../../assets/eth-icon.svg";
+import nft from "../../../assets/nft.png";
 import PolidoStakeBanner from "@lidofinance/polygon-sdk-banner";
 import "./styles.css";
 
@@ -9,7 +10,9 @@ const Stage4 = () => {
     <>
       <div className="content-container larger-container">
         <div className="display-row">
-          <div>teste</div>
+          <div>
+            <img alt="" src={nft} />
+          </div>
           <div className="column-cards">
             <div className="card-container">
               <div className="card-header">
@@ -25,7 +28,7 @@ const Stage4 = () => {
                     <span>WDREXtr</span>
                   </div>
                   <div style={{ color: "#9b9b98", fontWeight: 600 }}>
-                    Balance: <span style={{ color: "white" }}>0</span>
+                    Balance: <span style={{ color: "white" }}>10000</span>
                   </div>
                 </div>
                 <hr className="solid-line bd-white" />
@@ -35,7 +38,7 @@ const Stage4 = () => {
                     <span>wstETH</span>
                   </div>
                   <div style={{ color: "#9b9b98", fontWeight: 600 }}>
-                    Balance: <span style={{ color: "white" }}>0</span>
+                    Balance: <span style={{ color: "white" }}>1.29</span>
                   </div>
                 </div>
               </div>

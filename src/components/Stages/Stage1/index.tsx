@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TransferIcon from "../../../assets/transfer-icon.svg";
 import BrFlag from "../../../assets/br-flag.svg";
+import MaticIcon from "../../../assets/matic-icon.svg";
 import EthIcon from "../../../assets/eth-icon.svg";
 import ButtonComponent from "../../../components/Button";
 import "./styles.css";
@@ -26,7 +27,7 @@ const Stage1 = () => {
   });
 
   const tokenMumbai = useToken({
-    address: "0xb50b190efbb7d6913c85c43e461b5bcb964e2b2b",
+    address: "0xed21ad555f7e1d05a91938744059ecaedf9b898c",
   });
 
   const balanceLaChain = useBalance({
@@ -41,13 +42,28 @@ const Stage1 = () => {
 
   const balanceMumbai = useBalance({
     address: account.address,
-    token: "0xb50b190efbb7d6913c85c43e461b5bcb964e2b2b",
+    token: "0xed21ad555f7e1d05a91938744059ecaedf9b898c",
   });
 
-  const transferNow = () => {
+  const transferNowEth = () => {
     axios
       .post("https://2ae1-177-8-53-243.ngrok-free.app/boreal/bridge", {
         network: "ethereum",
+        sender: account.address,
+        amount: drexAmount,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
+  const transferNowMatic = () => {
+    axios
+      .post("https://2ae1-177-8-53-243.ngrok-free.app/boreal/bridge", {
+        network: "polygon",
         sender: account.address,
         amount: drexAmount,
       })
@@ -146,7 +162,12 @@ const Stage1 = () => {
         <div className="card-bridge-container">
           <div className="bridge-subcomponent">
             <div className="bridge-selector">
-              <img alt="" src={EthIcon} />
+              <div>
+                {chain?.name === "Goerli" && <img alt="" src={EthIcon} />}
+                {chain?.name === "Polygon Mumbai" && (
+                  <img alt="" src={MaticIcon} />
+                )}
+              </div>
               <div>
                 {account.isDisconnected && "Polygon Mumbai"!}
                 {account.isConnected && chain?.name}
@@ -170,7 +191,12 @@ const Stage1 = () => {
                 }}
               >
                 {account.isDisconnected && "Balance: 0"}
-                {account.isConnected && balanceGoerli.data?.formatted}
+                {account.isConnected &&
+                  chain?.name === "Goerli" &&
+                  balanceGoerli?.data?.formatted}
+                {account.isConnected &&
+                  chain?.name === "Polygon Mumbai" &&
+                  balanceMumbai?.data?.formatted}
               </div>
             </div>
           </div>
@@ -204,7 +230,17 @@ const Stage1 = () => {
         </div>
 
         <div style={{ margin: "12px 0" }}>
-          <ButtonComponent onChange={() => transferNow()} text="Transfer now" />
+          {chain?.name === "Goerli" ? (
+            <ButtonComponent
+              onChange={() => transferNowEth()}
+              text="Transfer Now"
+            />
+          ) : chain?.name === "Polygon Mumbai" ? (
+            <ButtonComponent
+              onChange={() => transferNowMatic()}
+              text="Transfer Now"
+            />
+          ) : null}
         </div>
         <div style={{ margin: "12px 0" }}>
           <div className="stages-container">

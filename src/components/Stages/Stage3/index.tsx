@@ -3,12 +3,14 @@ import ButtonComponent from "../../Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import EthIcon from "../../../assets/eth-icon.svg";
+import MaticIcon from "../../../assets/matic-icon.svg";
 import "./styles.css";
-import { useAccount, useBalance } from "wagmi";
+import { useAccount, useBalance, useNetwork } from "wagmi";
 import axios from "axios";
 
 const Stage3 = () => {
   const [drexAmountStake, setDrexAmountStake] = useState<number>(0);
+  const { chain } = useNetwork();
   const account: any = useAccount();
   const { data } = useBalance({
     address: account.address,
@@ -16,6 +18,11 @@ const Stage3 = () => {
   const balanceGoerli = useBalance({
     address: account.address,
     token: "0x438db7329230cCACBb5C02ee5b01b300eb13C633",
+  });
+
+  const balanceMatic = useBalance({
+    address: account.address,
+    token: "0xed21ad555f7e1d05a91938744059ecaedf9b898c",
   });
 
   const stakingNow = () => {
@@ -61,16 +68,25 @@ const Stage3 = () => {
               <Col>
                 {account.isDisconnected && `0.0 WDREXtr`}
                 {account.isConnected &&
-                  `${balanceGoerli?.data?.formatted.slice(0, 6)} ${
-                    balanceGoerli?.data?.symbol
-                  }`}
+                  (chain?.name === "Goerli"
+                    ? `${balanceGoerli?.data?.formatted.slice(0, 5)} ${
+                        balanceGoerli?.data?.symbol
+                      }`
+                    : chain?.name === "Polygon Mumbai"
+                    ? `${balanceMatic?.data?.formatted.slice(0, 6)} ${
+                        balanceMatic?.data?.symbol
+                      }`
+                    : null)}
               </Col>
               <Col style={{ textAlign: "right", color: "#26E075" }}>4.1%</Col>
             </Row>
           </div>
           <div className="input-container">
             <div className="country-flags">
-              <img alt="" src={EthIcon} />
+              {chain?.name === "Goerli" && <img alt="" src={EthIcon} />}
+              {chain?.name === "Polygon Mumbai" && (
+                <img alt="" src={MaticIcon} />
+              )}
             </div>
             <input
               className="input"
